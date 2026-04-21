@@ -14,7 +14,12 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
+@app.get("/")
+def home():
+    return {
+        "message": "🧠 AI Link Intelligence Tool is running",
+        "usage": "/analyze?url=YOUR_URL"
+    }
 @app.get("/analyze")
 def analyze(url: str = Query(..., description="URL to analyze")):
     try:
