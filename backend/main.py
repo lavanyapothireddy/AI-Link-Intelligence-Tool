@@ -18,7 +18,7 @@ app.add_middleware(
 def home():
     return {
         "message": "🧠 AI Link Intelligence Tool is running",
-        "usage": "/analyze?url=YOUR_URL"
+        
     }
 @app.get("/analyze")
 def analyze(url: str = Query(..., description="URL to analyze")):
