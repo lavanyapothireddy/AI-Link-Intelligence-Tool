@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Query
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from scraper import extract_text
@@ -6,7 +6,7 @@ from ai_engine import summarize_text, classify_text, scam_check
 
 app = FastAPI()
 
-# CORS for frontend
+# Allow frontend calls
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -14,24 +14,19 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 @app.get("/")
 def home():
-    return {
-        "message": "🧠 AI Link Intelligence Tool is running",
-        
-    }
+    return {"message": "🧠 AI Link Intelligence Tool is running"}
+
 @app.get("/analyze")
-def analyze(url: str = Query(..., description="URL to analyze")):
+def analyze(url: str):
     try:
-        # 1. Extract content
         text = extract_text(url)
 
-        # 2. AI processing
         summary = summarize_text(text)
         category = classify_text(text)
-
-        # 3. Safety check (URL-based is better)
-        safety = scam_check(url)
+        safety = scam_check(text)
 
         return {
             "url": url,
@@ -42,6 +37,5 @@ def analyze(url: str = Query(..., description="URL to analyze")):
 
     except Exception as e:
         return {
-            "error": str(e),
-            "url": url
+            "error": str(e)
         }
