@@ -7,24 +7,17 @@
 
 <body>
 
-<div class="container">
+<h2>🧠 AI Link Intelligence Tool</h2>
 
-    <h1>🧠 AI Link Intelligence Tool</h1>
+<input type="text" id="urlInput" placeholder="Enter URL here">
+<button onclick="analyzeLink()">Analyze Link</button>
 
-    <input id="urlInput" type="text" placeholder="Enter URL">
+<h3 id="status"></h3>
 
-    <button onclick="analyzeLink()">Analyze Link</button>
-
-    <p id="status"></p>
-
-    <div class="box">
-        <p><b>URL:</b> <span id="url"></span></p>
-        <p><b>Summary:</b> <span id="summary"></span></p>
-        <p><b>Category:</b> <span id="category"></span></p>
-        <p><b>Safety:</b> <span id="safety"></span></p>
-    </div>
-
-</div>
+<p><b>URL:</b> <span id="url"></span></p>
+<p><b>Summary:</b> <span id="summary"></span></p>
+<p><b>Category:</b> <span id="category"></span></p>
+<p><b>Safety:</b> <span id="safety"></span></p>
 
 <script src="script.js"></script>
 
